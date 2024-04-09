@@ -1,0 +1,111 @@
+{
+	"name": "omegasheets-vscode",
+	"displayName": "Omegasheets",
+	"description": "Spreadsheet editor",
+	"version": "0.1.0",
+	"icon": "assets/os-logo.png",
+	"engines": {
+		"vscode": "^1.87.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"spreadsheet",
+		"workbook",
+		"Excel",
+		"xlsx",
+		"xls",
+		"CSV"
+	],
+	"preview": true,
+	"activationEvents": [
+		"onLanguage:plaintext",
+		"onLanguage:csv",
+		"onLanguage:tsv",
+		"onLanguage:xlsx",
+		"onWebviewPanel:omegasheets.csv",
+		"onWebviewPanel:omegasheets.csv-default",
+		"onWebviewPanel:omegasheets.workbook"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "omegasheets.csvDelimiter",
+				"title": "OmegaSheets: CSV delimiter"
+			},
+			{
+				"command": "omegasheets.csvHeader",
+				"title": "OmegaSheets: CSV header"
+			},
+			{
+				"command": "omegasheets.copySum",
+				"title": "OmegaSheets: Copy sum of selected cells"
+			},
+			{
+				"command": "omegasheets.copyAvg",
+				"title": "OmegaSheets: Copy average of selected cells"
+			},
+			{
+				"command": "omegasheets.copyCnt",
+				"title": "OmegaSheets: Copy count of selected cells"
+			}
+		],
+		"customEditors": [
+			{
+				"viewType": "omegasheets.workbook",
+				"displayName": "Workbook Editor",
+				"selector": [
+					{
+						"filenamePattern": "*.xlsx"
+					},
+					{
+						"filenamePattern": "*.xls"
+					}
+				]
+			},
+			{
+				"viewType": "omegasheets.csv-default",
+				"displayName": "CSV Editor",
+				"priority": "option",
+				"selector": [
+					{
+						"filenamePattern": "*.csv"
+					},
+					{
+						"filenamePattern": "*.tsv"
+					}
+				]
+			},
+			{
+				"viewType": "omegasheets.csv",
+				"displayName": "CSV editor",
+				"selector": [
+					{
+						"filenamePattern": "*.omega.csv"
+					},
+					{
+						"filenamePattern": "*.omega.tsv"
+					}
+				]
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "OmegaSheets",
+			"properties": {
+				"omegasheets.csvDelimiter": {
+					"type": "string",
+					"default": ",",
+					"description": "Specifies the delimiter used in the csv file."
+				},
+				"omegasheets.csvHeader": {
+					"type": "boolean",
+					"default": true,
+					"description": "Specifies whether the csv file has a header row."
+				}
+			}
+		}
+	}
+}
